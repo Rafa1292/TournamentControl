@@ -1,0 +1,12 @@
+C:\Users\rvill\source\repos\TournamentControl\BL\bin\Debug\netcoreapp3.1\BL.deps.json
+C:\Users\rvill\source\repos\TournamentControl\BL\bin\Debug\netcoreapp3.1\BL.dll
+C:\Users\rvill\source\repos\TournamentControl\BL\bin\Debug\netcoreapp3.1\BL.pdb
+C:\Users\rvill\source\repos\TournamentControl\BL\bin\Debug\netcoreapp3.1\Comm.dll
+C:\Users\rvill\source\repos\TournamentControl\BL\bin\Debug\netcoreapp3.1\Comm.pdb
+C:\Users\rvill\source\repos\TournamentControl\BL\obj\Debug\netcoreapp3.1\BL.csprojAssemblyReference.cache
+C:\Users\rvill\source\repos\TournamentControl\BL\obj\Debug\netcoreapp3.1\BL.AssemblyInfoInputs.cache
+C:\Users\rvill\source\repos\TournamentControl\BL\obj\Debug\netcoreapp3.1\BL.AssemblyInfo.cs
+C:\Users\rvill\source\repos\TournamentControl\BL\obj\Debug\netcoreapp3.1\BL.csproj.CoreCompileInputs.cache
+C:\Users\rvill\source\repos\TournamentControl\BL\obj\Debug\netcoreapp3.1\BL.csproj.CopyComplete
+C:\Users\rvill\source\repos\TournamentControl\BL\obj\Debug\netcoreapp3.1\BL.dll
+C:\Users\rvill\source\repos\TournamentControl\BL\obj\Debug\netcoreapp3.1\BL.pdb

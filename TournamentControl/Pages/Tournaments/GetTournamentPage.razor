@@ -1,0 +1,56 @@
+﻿@page "/Tournaments/Get/{TournamentId}"
+@using BL.Tournaments;
+@using Comm.ViewModels;
+
+@inject RouterTournament router;
+
+<div class="col-12 d-flex flex-wrap justify-content-center">
+    <div class="col-md-8 d-flex flex-wrap" style="height: fit-content;">
+        <GetTournamentComponent positionTables="PositionTables"/>
+    </div>
+    <div class="col-lg-3 flex-wrap d-flex p-0" style="height: fit-content;">
+        <GetWorkDayComponent WorkDay="currentWorkDay"
+                             ChangeWorkDay="ChangeWorkDay"
+                             refresTournament="refresTournament"
+                             />
+    </div>
+</div>
+
+
+
+
+@code {
+    [Parameter]
+    public string TournamentId { get; set; }
+
+    TournamentVM tournament = new TournamentVM();
+    List<WorkDayVM> workDays = new List<WorkDayVM>();
+    int currentWorkDayIndex = 0;
+    WorkDayVM currentWorkDay = new WorkDayVM();
+    List<PositionTable> PositionTables { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        refresTournament();
+    }
+
+    public void ChangeWorkDay(int index)
+    {
+        if ((currentWorkDayIndex + index) >= 0 && (currentWorkDayIndex + index) < workDays.Count)
+        {
+            currentWorkDayIndex += index;
+            currentWorkDay = workDays[currentWorkDayIndex];
+        }
+
+    }
+
+    public void refresTournament()
+    {
+        tournament = router.Get(Int32.Parse(TournamentId));
+        workDays = tournament.WorkDays.OrderBy(x => x.Number).ToList();
+        currentWorkDay = workDays[currentWorkDayIndex];
+        PositionTables = router.GetPositionTable(tournament);
+        PositionTables = PositionTables.OrderByDescending(x => x.Points).ThenByDescending(x => x.GoalsDiference).ThenByDescending(x => x.GoalsFor).ToList();
+
+    }
+}

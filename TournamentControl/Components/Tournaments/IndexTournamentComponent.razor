@@ -1,0 +1,51 @@
+﻿@using Comm.ViewModels;;
+@using BL.Tournaments;
+
+@inject RouterTournament router;
+
+
+<div class="col-12 d-flex flex-wrap justify-content-center text-white">
+    <span class="col-12 h4 text-center font-weight-bolder mt-5 mb-5">
+        Torneos
+    </span>
+    <p class="col-12 p-1 d-flex justify-content-center">
+        <a class="btn btn-primary " href="Tournaments/Create">Agregar torneo</a>
+    </p>
+    <label class="text-danger h5 ">@message</label>
+
+    <div class="col-12 p-0 d-flex flex-wrap justify-content-center" style="max-height: 60vh; overflow-y: scroll;">
+        <table id="tournamentsTable" class=" col-sm-6 table text-center table-striped table-dark text-white" style="background: rgba(0,0,0,.5);">
+            <tbody>
+                @foreach (var tournament in tournaments)
+                {
+                    <tr>
+
+                        <td>
+                            @tournament.Name
+                        </td>
+                        <td>
+                            @tournament.StateDescription
+                        </td>
+                        <td class="d-flex justify-content-center flex-wrap">
+                            <a class="m-2" href="Tournaments/Get/@tournament.TournamentId"><i class="fas fa-table text-light"></i></a>
+                            <a class="m-2" href="Tournaments/Cancel/@tournament.TournamentId"><i class="fa fa-trash text-danger"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@code{
+
+    List<TournamentVM> tournaments = new List<TournamentVM>();
+    string message;
+
+
+    protected override void OnInitialized()
+    {
+        tournaments = router.GetAll();
+    }
+
+
+}

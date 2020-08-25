@@ -1,0 +1,51 @@
+﻿@using Comm.ViewModels;
+@using BL.Teams;
+
+@inject RouterTeam router
+
+<div class="col-12 d-flex flex-wrap justify-content-center">
+    <span class="col-12 h4 text-center font-weight-bolder text-white mt-5 mb-5">
+        Equipos
+    </span>
+    <p class="col-12 p-1 d-flex justify-content-center">
+        <a class="btn btn-primary " href="Teams/Create">Agregar equipo</a>
+    </p>
+    <label class="text-danger h5 ">@message</label>
+
+    <div class="col-12 p-0 d-flex flex-wrap justify-content-center" style="max-height: 60vh; overflow-y: scroll;">
+        <table id="playersTable" class="col-sm-6 table table-striped text-center table-dark" style="background: rgba(0,0,0,.8);">
+
+            <tbody>
+                @foreach (var team in teams)
+                {
+                    <tr>
+
+                        <td>
+                            <img src="@team.Image" asp-append-version="true" width="35" height="35" />
+                        </td>
+                        <td class="text-white-50">
+                            @team.Name
+                        </td>
+                        <td class="d-flex flex-wrap justify-content-center">
+                            <a class="m-2" href="Teams/Update/@team.TeamId"><i class="fas fa-edit text-light"></i></a>
+                            <a class="m-2" href="Teams/Delete/@team.TeamId"><i class="fa fa-trash text-danger"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@code{
+
+    List<TeamVM> teams = new List<TeamVM>();
+    string message;
+
+
+    protected override void OnInitialized()
+    {
+        teams = router.GetAll();
+    }
+
+
+}

@@ -1,0 +1,56 @@
+﻿@using Comm.ViewModels;
+@using BL.Teams;
+
+@inject NavigationManager NavManager
+@inject RouterTeam router
+
+<div class="col-12 d-flex flex-wrap justify-content-center text-white">
+    <span class="col-12 h4 text-center font-weight-bolder mt-5 mb-5">
+        Editar equipo
+    </span>
+    <EditForm class="col-md-4" Model="@team" OnValidSubmit="@Save">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="form-group">
+            <label for="name" class="font-weight-bolder ">Nombre</label>
+            <InputText id="name" @bind-Value="team.Name" class="form-control" />
+            <ValidationMessage For="@(() => team.Name)" class="text-danger" />
+        </div>
+        <div class="form-group">
+            <label for="acronym" class="font-weight-bolder">Acronimo</label>
+            <InputText id="acronym" @bind-Value="team.Acronym" class="form-control" />
+            <ValidationMessage For="@(() => team.Acronym)" class="text-danger" />
+        </div>
+        <div class="form-group justify-content-center d-flex flex-wrap">
+            <span class="col-12 text-danger text-center h5">@message</span>
+            <input type="submit" value="Guardar" class="form-control btn btn-dark" />
+            <a href="Teams/Index" class="btn btn-secondary m-3">Volver</a>
+
+        </div>
+    </EditForm>
+</div>
+
+@code {
+    [Parameter]
+    public string TeamId { get; set; }
+    TeamVM team = new TeamVM();
+    string message;
+
+    protected override void OnInitialized()
+    {
+        team = router.Get(Int32.Parse(TeamId));
+    }
+
+    private void Save()
+    {
+        var response = router.Update(team);
+        if (response)
+        {
+            NavManager.NavigateTo("Teams/Index");
+        }
+        else
+        {
+            message = "No se ha podido actualizar el equipo";
+        }
+    }
+}

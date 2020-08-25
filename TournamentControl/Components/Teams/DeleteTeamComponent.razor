@@ -1,0 +1,37 @@
+﻿@using Comm.ViewModels;
+
+<div class="col-12 d-flex flex-wrap justify-content-center text-white">
+    <span class="col-12 h4 text-center font-weight-bolder mt-5 mb-5">
+        Eliminar equipo
+    </span>
+    <label class="col-12 text-center">¿Seguro que deseas eliminar este equipo?</label>
+    <h5 class="col-12 mb-4 text-center">
+        <strong>
+            @team.Name 
+        </strong>
+    </h5>
+    <div class="form-group justify-content-center d-flex flex-wrap">
+        <span class="col-12 text-danger text-center h5">@message</span>
+        <input type="button" value="Eliminar equipo" @onclick="Delete" class="form-control btn btn-danger col-12" />
+        <a href="Teams/Index" class="btn btn-secondary m-3">Volver</a>
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public string TeamId { get; set; }
+    public string message { get; set; }
+    TeamVM team = new TeamVM();
+
+    protected override async Task OnInitializedAsync()
+    {
+        team.Name = "Barcelona";
+    }
+
+    private void Delete()
+    {
+
+    }
+}
+

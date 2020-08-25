@@ -1,0 +1,17 @@
+C:\Users\rvill\source\repos\TournamentControl\DataAccessTournament\bin\Debug\netcoreapp3.1\DataAccessTournament.deps.json
+C:\Users\rvill\source\repos\TournamentControl\DataAccessTournament\bin\Debug\netcoreapp3.1\DataAccessTournament.dll
+C:\Users\rvill\source\repos\TournamentControl\DataAccessTournament\bin\Debug\netcoreapp3.1\DataAccessTournament.pdb
+C:\Users\rvill\source\repos\TournamentControl\DataAccessTournament\obj\Debug\netcoreapp3.1\DataAccessTournament.csprojAssemblyReference.cache
+C:\Users\rvill\source\repos\TournamentControl\DataAccessTournament\obj\Debug\netcoreapp3.1\DataAccessTournament.AssemblyInfoInputs.cache
+C:\Users\rvill\source\repos\TournamentControl\DataAccessTournament\obj\Debug\netcoreapp3.1\DataAccessTournament.AssemblyInfo.cs
+C:\Users\rvill\source\repos\TournamentControl\DataAccessTournament\obj\Debug\netcoreapp3.1\DataAccessTournament.csproj.CopyComplete
+C:\Users\rvill\source\repos\TournamentControl\DataAccessTournament\obj\Debug\netcoreapp3.1\DataAccessTournament.dll
+C:\Users\rvill\source\repos\TournamentControl\DataAccessTournament\obj\Debug\netcoreapp3.1\DataAccessTournament.pdb
+C:\Users\rvill\source\repos\TournamentControl\DataAccessTournament\bin\Debug\netcoreapp3.1\DataAccessTournament.runtimeconfig.json
+C:\Users\rvill\source\repos\TournamentControl\DataAccessTournament\bin\Debug\netcoreapp3.1\DataAccessTournament.runtimeconfig.dev.json
+C:\Users\rvill\source\repos\TournamentControl\DataAccessTournament\obj\Debug\netcoreapp3.1\DataAccessTournament.genruntimeconfig.cache
+C:\Users\rvill\source\repos\TournamentControl\DataAccessTournament\bin\Debug\netcoreapp3.1\Comm.dll
+C:\Users\rvill\source\repos\TournamentControl\DataAccessTournament\bin\Debug\netcoreapp3.1\Comm.pdb
+C:\Users\rvill\source\repos\TournamentControl\DataAccessTournament\bin\Debug\netcoreapp3.1\BL.dll
+C:\Users\rvill\source\repos\TournamentControl\DataAccessTournament\bin\Debug\netcoreapp3.1\BL.pdb
+C:\Users\rvill\source\repos\TournamentControl\DataAccessTournament\obj\Debug\netcoreapp3.1\DataAccessTournament.csproj.CoreCompileInputs.cache

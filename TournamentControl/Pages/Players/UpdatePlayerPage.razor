@@ -1,0 +1,14 @@
+﻿@page "/Players/Update/{PlayerId}"
+
+
+<UpdatePlayerComponent PlayerId="@PlayerId" />
+
+@code {
+    [Parameter]
+    public string PlayerId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        PlayerId = PlayerId;
+    }
+}

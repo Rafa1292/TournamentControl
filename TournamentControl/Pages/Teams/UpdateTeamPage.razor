@@ -1,0 +1,14 @@
+﻿@page "/Teams/Update/{TeamId}"
+
+
+<UpdateTeamComponent TeamId="@TeamId" />
+
+@code {
+    [Parameter]
+    public string TeamId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        TeamId = TeamId;
+    }
+}

@@ -1,0 +1,59 @@
+﻿@using Comm.ViewModels;
+@using BL.Players
+
+@inject RouterPlayer router
+@inject NavigationManager NavManager
+
+<div class="col-12 d-flex flex-wrap justify-content-center text-white">
+    <span class="col-12 h4 text-center font-weight-bolder mt-5 mb-5">
+        Editar jugador
+    </span>
+    <EditForm class="col-md-4" Model="@player" OnValidSubmit="@Save">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="form-group">
+            <label for="name" class="font-weight-bolder">Nombre</label>
+            <InputText id="name" @bind-Value="player.Name" class="form-control" />
+            <ValidationMessage For="@(() => player.Name)" class="text-danger" />
+        </div>
+        <div class="form-group">
+            <label for="alias" class="font-weight-bolder">Alias</label>
+            <InputText id="alias" @bind-Value="player.Alias" class="form-control" />
+            <ValidationMessage For="@(() => player.Alias)" class="text-danger" />
+        </div>
+
+
+        <div class="form-group justify-content-center d-flex flex-wrap">
+            <span class="col-12 text-danger text-center h5">@message</span>
+            <input type="submit" value="Guardar" class="form-control btn btn-dark" />
+            <a href="Players/Index" class="btn btn-outline-secondary m-3">Volver</a>
+
+        </div>
+    </EditForm>
+</div>
+
+@code {
+    [Parameter]
+    public string PlayerId { get; set; }
+    PlayerVM player = new PlayerVM();
+    string message;
+
+    protected override void OnInitialized()
+    {
+        player = router.Get(Int32.Parse(PlayerId));
+    }
+
+    private void Save()
+    {
+        var response = router.Update(player);
+
+        if (response)
+        {
+            NavManager.NavigateTo("Players/Index");
+        }
+        else
+        {
+            message = "No se ha podido actualizar el jugador";
+        }
+    }
+}

@@ -1,0 +1,88 @@
+﻿@using Comm.ViewModels;
+@using BL.Players
+@inject RouterPlayer router
+
+
+<div class="col-12 d-flex flex-wrap justify-content-center text-white">
+    <span class="col-12 h4 text-center font-weight-bolder mt-5 mb-5">
+        Jugadores
+    </span>
+    <p class="col-12 p-1 d-flex justify-content-center">
+        <a class="btn btn-primary " href="Players/Create">Agregar jugador</a>
+    </p>
+    <label class="text-danger h5 ">@message</label>
+
+    <div class="col-12 p-0 d-flex flex-wrap justify-content-center" style="max-height:50vh; overflow-y: scroll;">
+        <table id="playersTable" class="col-sm-6 table text-center table-striped table-dark text-white" style="background: rgba(0,0,0,.5);">
+            <tbody>
+                @foreach (var player in players)
+                {
+                    <tr>
+                        <td>@player.Name</td>
+                        <td class="">@player.Alias</td>
+                        <td class="d-flex justify-content-center flex-wrap">
+                            <a class=" m-2" href="Players/Update/@player.PlayerId"><i class="fas fa-edit text-light"></i></a>
+                            <a class=" m-2" href="Players/Delete/@player.PlayerId"><i class="fa fa-trash text-danger"></i> </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@code{
+
+    List<PlayerVM> players = new List<PlayerVM>();
+    string message;
+
+
+    protected override void OnInitialized()
+    {
+        try
+        {
+            players = router.GetAll();
+
+        }
+        catch (Exception e)
+        {
+
+            players = new List<PlayerVM>();
+        }
+    }
+
+    private void fill()
+    {
+        players.Add(
+            new PlayerVM()
+            {
+                PlayerId = 1,
+                Name = "Arnold",
+                Alias = "Godo"
+            }
+            );
+        players.Add(
+            new PlayerVM()
+            {
+                PlayerId = 2,
+                Name = "Rafa",
+                Alias = "Rafin"
+            }
+            );
+        players.Add(
+            new PlayerVM()
+            {
+                PlayerId = 3,
+                Name = "Steven",
+                Alias = "Peluca"
+            }
+            );
+        players.Add(
+            new PlayerVM()
+            {
+                PlayerId = 4,
+                Name = "Kevin",
+                Alias = "Chule"
+            }
+            );
+    }
+}

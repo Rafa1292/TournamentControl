@@ -1,0 +1,30 @@
+﻿@using Comm.ViewModels;
+    <div class="col-12 d-flex flex-wrap justify-content-center p-2" style="background: rgba(0,0,0,.5); margin: 10vh 0;">
+        <span class="col-12 h4 text-center font-weight-bolder text-white d-flex justify-content-center align-items-center">
+            <i class="fas fa-chevron-circle-left mx-3" style="font-size: 15px" @onclick="@(()=> ChangeWorkDay.InvokeAsync(-1))"></i>
+            Jornada @WorkDay.Number
+            <i class="fas fa-chevron-circle-right mx-3" style="font-size: 15px" @onclick="@(()=> ChangeWorkDay.InvokeAsync(1))"></i>
+        </span>
+        <div class="col-12 p-0 d-flex flex-wrap justify-content-center">
+            @foreach (var match in WorkDay.Matches)
+            {
+                <GetMatchComponent  Match="match" refresTournament="refresTournament"/>
+            }
+        </div>
+    </div>
+@code{
+    [Parameter] public WorkDayVM WorkDay{ get; set; }
+    [Parameter] public EventCallback<int> ChangeWorkDay { get; set; }
+    [Parameter] public EventCallback refresTournament { get; set; }
+
+
+    List<TeamVM> teams = new List<TeamVM>();
+    string message;
+
+
+    protected override void OnInitialized()
+    {
+
+    }
+
+}

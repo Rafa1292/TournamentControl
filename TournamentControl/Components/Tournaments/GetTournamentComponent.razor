@@ -1,0 +1,72 @@
+﻿@using Comm.ViewModels;
+
+<div class="col-12 d-flex flex-wrap justify-content-center text-white">
+    <span class="col-12 h4 text-center font-weight-bolder mt-5 mb-5">
+        @tournament.Name
+    </span>
+    <label class="text-danger h5 ">@message</label>
+
+    <div class="col-12 p-0 d-flex flex-wrap justify-content-center">
+        <table id="tournamentsTable" class="display col-12 table text-center table-dark text-white" style="font-size: 12px; background: rgba(0,0,0,.5);">
+            <tr class="table-head">
+                <th>Jugador</th>
+                <th>PJ</th>
+                <th>PG</th>
+                <th>PP</th>
+                <th>PE</th>
+                <th>GF</th>
+                <th>GC</th>
+                <th>DIF</th>
+                <th>PTS</th>
+            </tr>
+            <tbody>
+
+                @foreach (var position in positionTables)
+                {
+                    <tr>
+
+                        <td>
+                            @position.Player.Name
+                        </td>
+                        <td>
+                            @position.MatchPlayed
+                        </td>
+                        <td>
+                            @position.MatchWon
+                        </td>
+                        <td>
+                            @position.LostMatch
+                        </td>
+                        <td>
+                            @position.TiedMatch
+                        </td>
+                        <td>
+                            @position.GoalsFor
+                        </td>
+                        <td>
+                            @position.GoalsAgainst
+                        </td>
+                        <td>
+                            @position.GoalsDiference
+                        </td>
+                        <td>
+                            @position.Points
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@code{
+
+    TournamentVM tournament = new TournamentVM();
+    string message;
+    [Parameter]
+    public List<PositionTable> positionTables { get; set; }
+
+    protected override void OnInitialized()
+    {
+    }
+
+}

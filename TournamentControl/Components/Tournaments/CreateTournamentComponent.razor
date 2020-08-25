@@ -1,0 +1,107 @@
+﻿@using Comm.ViewModels;
+@using BL.Tournaments;
+@using BL.Players;
+
+@inject RouterTournament router;
+@inject RouterPlayer players;
+@inject NavigationManager NavManager;
+
+<div class="col-12 d-flex flex-wrap justify-content-center text-white">
+    <span class="col-12 h4 text-center font-weight-bolder mt-5 mb-5">
+        Agregar torneo
+    </span>
+    <EditForm class="col-md-4" Model="@tournament" OnValidSubmit="@Save">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="form-group">
+            <label for="name" class="font-weight-bolder">Nombre</label>
+            <InputText id="name" @bind-Value="tournament.Name" class="form-control" />
+            <ValidationMessage For="@(() => tournament.Name)" class="text-danger" />
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#playersModal">
+            Jugadores disponibles
+        </button>
+
+        @if (tournament.Players.Count() > 0)
+        {
+            <div class="col-12 d-flex flex-wrap justify-content-center  p-4 my-4">
+                <h5 style="text-shadow: 2px 1px 1px black;">Participantes</h5>
+                <ul class="list-group list-group-flush col-12 my-3">
+                    @foreach (var player in tournament.Players)
+                    {
+                        <li class="list-group-item d-flex justify-content-between" style="background: rgba(0,0,0,.5)">@player.Name <i class="fas fa-minus-circle btn-animation" @onclick="@(() => RemovePlayer(player.PlayerId))"></i></li>
+                    }
+                </ul>
+            </div>
+        }
+        <div class="form-group justify-content-center d-flex flex-wrap">
+            <span class="col-12 text-danger text-center h5">@message</span>
+            <input type="submit" value="Agregar torneo" class="form-control btn btn-dark" />
+            <a href="Tournaments/Index" class="btn btn-secondary m-3">Volver</a>
+        </div>
+    </EditForm>
+</div>
+
+<div class="modal fade" id="playersModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Jugadores disponibles</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group list-group-flush">
+                    @foreach (var player in AvailablePlayers)
+                    {
+                        <li class="list-group-item d-flex justify-content-between">@player.Name <i class="fas fa-plus-circle btn-animation" @onclick="@(()=>AddPlayer(player.PlayerId))"></i></li>
+                    }
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    TournamentVM tournament = new TournamentVM();
+    string message;
+    List<PlayerVM> AvailablePlayers = new List<PlayerVM>();
+
+    protected override void OnInitialized()
+    {
+        AvailablePlayers = players.GetAll();
+        tournament.Players = new List<PlayerVM>();
+    }
+
+    private void Save()
+    {
+        tournament.Players = tournament.Players.OrderBy(x => x.PlayerId).ToList();
+        var response = router.Insert(tournament);
+        if (response)
+        {
+            NavManager.NavigateTo("Tournaments/Index");
+        }
+        else
+        {
+            message = "No se ha podido agregar el torneo";
+        }
+    }
+
+    private void AddPlayer(int id)
+    {
+        tournament.Players.Add(AvailablePlayers.Find(x => x.PlayerId == id));
+        AvailablePlayers.Remove(AvailablePlayers.Find(x => x.PlayerId == id));
+    }
+
+    private void RemovePlayer(int id)
+    {
+        AvailablePlayers.Add(tournament.Players.Find(x => x.PlayerId == id));
+        tournament.Players.Remove(tournament.Players.Find(x => x.PlayerId == id));
+
+    }
+
+}
