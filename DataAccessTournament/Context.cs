@@ -21,7 +21,7 @@ namespace DataAccessTournament
         {
             if (!options.IsConfigured)
             {
-                options.UseSqlServer(@"Server=.;Database=FifaContext;Trusted_Connection=True;MultipleActiveResultSets=True;Integrated Security=true");
+                options.UseSqlServer(@"Server=tcp:fifa.database.windows.net,1433;Initial Catalog=fifa;Persist Security Info=False;User ID=rvilla;Password=rafavilla2013.;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
         }
     }
