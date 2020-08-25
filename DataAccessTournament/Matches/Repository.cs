@@ -60,5 +60,21 @@ namespace DataAccessTournament.Matches
                 return false;
             }
         }
+
+        public static List<Match> GetMatchesByWorkDay()
+        {
+            try
+            {
+                using (var db = new Context())
+                {
+                    var matches = db.Matches.OrderByDescending(x => x.MatchId).ToList();
+                    return matches;
+                }
+            }
+            catch (Exception e)
+            {
+                return new List<Match>();
+            }
+        }
     }
 }

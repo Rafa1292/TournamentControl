@@ -11,6 +11,7 @@ namespace BL.Matches
 
         public bool Update(MatchVM matchVM);
 
+        public List<MatchVM> GetMatchesByWorkDay();
 
         public List<MatchVM> GetMatchesByWorkDay(int workDayId);
     }

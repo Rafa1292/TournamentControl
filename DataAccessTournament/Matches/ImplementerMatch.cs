@@ -22,6 +22,14 @@ namespace DataAccessTournament.Matches
             return matcesVM;
         }
 
+        public List<MatchVM> GetMatchesByWorkDay()
+        {
+            var matches = Repository.GetMatchesByWorkDay();
+            var matcesVM = Mapper.MapToVM(matches);
+
+            return matcesVM;
+        }
+
         public bool Update(MatchVM matchVM)
         {
             var match = Mapper.MapFromVM(matchVM);

@@ -2,6 +2,7 @@
 using Comm.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BL.Matches
@@ -35,6 +36,16 @@ namespace BL.Matches
             matches.ForEach(x => x.HomePlayer = players.Find(y => y.PlayerId == x.HomePlayerId));
 
             return matches;
+        }
+
+        public List<MatchVM> GetMatchesByWorkDay()
+        {
+            var matches = _match.GetMatchesByWorkDay().Where(x => x.Played).ToList();
+            var players = _player.GetAll();
+            matches.ForEach(x => x.AwayPlayer = players.Find(y => y.PlayerId == x.AwayPlayerId));
+            matches.ForEach(x => x.HomePlayer = players.Find(y => y.PlayerId == x.HomePlayerId));
+
+            return matches.OrderByDescending(x => x.MatchId).ToList();
         }
 
     }
